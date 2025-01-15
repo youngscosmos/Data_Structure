@@ -2,6 +2,7 @@
 
 int main(void)
 {
+    // Create Node
     LCRSNode* Root = LCRS_CreateNode('A');
     LCRSNode* B = LCRS_CreateNode('B');
     LCRSNode* C = LCRS_CreateNode('C');
@@ -14,6 +15,7 @@ int main(void)
     LCRSNode* J = LCRS_CreateNode('J');
     LCRSNode* K = LCRS_CreateNode('K');
 
+    // Add Node to Tree
     LCRS_AddChildNode(Root, B);
         LCRS_AddChildNode(B, C);
         LCRS_AddChildNode(B, D);
@@ -22,7 +24,7 @@ int main(void)
     
     LCRS_AddChildNode(Root, G);
         LCRS_AddChildNode(G, H);
-
+    
     LCRS_AddChildNode(Root, I);
         LCRS_AddChildNode(I, J);
             LCRS_AddChildNode(J, K);

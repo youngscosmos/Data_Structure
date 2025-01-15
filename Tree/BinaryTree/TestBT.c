@@ -10,27 +10,29 @@ int main(void)
     SBTNode* F = SBT_CreateNode('F');
     SBTNode* G = SBT_CreateNode('G');
 
+    // Add Node to Tree
     A->Left = B;
-        B->Left = C;
-        B->Right = D;
+    B->Left = C;
+    B->Right = D;
 
     A->Right = E;
-        E->Left = F;
-        E->Right = G;
+    E->Left = F;
+    E->Right = G;
 
-    printf("Preorder ...\n");
+    // Print Tree
+    printf("Preorder ... \n");
     SBT_PreorderPrintTree(A);
     printf("\n\n");
 
-    printf("Inorder ...\n");
+    printf("Inorder ... \n");
     SBT_InorderPrintTree(A);
     printf("\n\n");
 
-    printf("Postorder ...\n");
+    printf("Postorder ... \n");
     SBT_PostorderPrintTree(A);
     printf("\n");
 
     SBT_DestroyTree(A);
-
+    
     return 0;
 }

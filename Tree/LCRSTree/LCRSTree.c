@@ -1,6 +1,6 @@
 #include "LCRSTree.h"
 
-LCRSNode* LCRS_CreateNode(ElementType NewData)
+LCRSNode*   LCRS_CreateNode(ElementType NewData)
 {
     LCRSNode* NewNode = (LCRSNode*)malloc(sizeof(LCRSNode));
     NewNode->LeftChild = NULL;
@@ -10,52 +10,55 @@ LCRSNode* LCRS_CreateNode(ElementType NewData)
     return NewNode;
 }
 
-void LCRS_DestroyNode(LCRSNode* Node)
+void        LCRS_DestroyNode(LCRSNode* Node)
 {
     free(Node);
 }
 
-void LCRS_DestroyTree(LCRSNode* Root)
+void        LCRS_DestroyTree(LCRSNode* Root)
 {
     if(Root->RightSibling != NULL)
         LCRS_DestroyTree(Root->RightSibling);
 
     if(Root->LeftChild != NULL)
         LCRS_DestroyTree(Root->LeftChild);
-
+    
     Root->LeftChild = NULL;
     Root->RightSibling = NULL;
 
     LCRS_DestroyNode(Root);
 }
 
-void LCRS_AddChildNode(LCRSNode* Parent, LCRSNode* Child)
+void        LCRS_AddChildNode(LCRSNode* Parent, LCRSNode* Child)
 {
     if(Parent->LeftChild == NULL)
+    {
         Parent->LeftChild = Child;
+    }
     else
     {
         LCRSNode* TempNode = Parent->LeftChild;
         while(TempNode->RightSibling != NULL)
             TempNode = TempNode->RightSibling;
+        
         TempNode->RightSibling = Child;
     }
 }
 
-void LCRS_PrintTree(LCRSNode* Node, int Depth)
+void        LCRS_PrintTree(LCRSNode* Node, int Depth)
 {
     int i = 0;
-    for(i = 0; i < Depth - 1; i++)
+    for(i = 0; i < Depth - 1; i++) // Indenting
         printf("   ");
-    
-    if(Depth > 0)
-        printf("+--");
 
+    if(Depth > 0) // Print ChildNode
+        printf("+--");
+    
     printf("%c\n", Node->Data);
 
     if(Node->LeftChild != NULL)
-        LCRS_PrintTree(Node->LeftChild, Depth+1);
-
+        LCRS_PrintTree(Node->LeftChild, Depth + 1);
+    
     if(Node->RightSibling != NULL)
         LCRS_PrintTree(Node->RightSibling, Depth);
 }
